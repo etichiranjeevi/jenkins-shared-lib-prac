@@ -8,41 +8,61 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir() // remove all files from previous builds
+            }
+        }
+
         stage('Checkout') {
             steps {
                 checkoutCode(branch: 'main', repo: 'your-org/your-app')
             }
         }
+
+        stage('Fix Script Permissions') {
+            steps {
+                sh 'chmod +x *.sh'
+                sh 'ls -l *.sh'
+            }
+        }
+
         stage('Build') {
             steps {
                 buildApp()
             }
         }
+
         stage('Unit Test') {
             steps {
                 runTests(testType: 'unit')
             }
         }
+
         stage('Integration Test') {
             steps {
                 runTests(testType: 'integration')
             }
         }
+
         stage('Security Scan') {
             steps {
                 sh './security_scan.sh'
             }
         }
+
         stage('Package') {
             steps {
                 packageApp()
             }
         }
+
         stage('Deploy to Staging') {
             steps {
                 deployApp(env: DEPLOY_ENV)
             }
         }
+
         stage('Notify') {
             steps {
                 notifySlack(message: "Pipeline finished successfully!")
