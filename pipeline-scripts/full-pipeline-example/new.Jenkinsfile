@@ -16,7 +16,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                branch: 'main', git url: 'https://github.com/etichiranjeevi/jenkins-shared-lib-prac.git'
+                 git url: 'https://github.com/etichiranjeevi/jenkins-shared-lib-prac.git', branch : 'main'
             }
         }
 
