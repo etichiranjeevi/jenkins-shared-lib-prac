@@ -16,7 +16,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                checkoutCode(branch: 'main', repo: 'your-org/your-app')
+                checkoutCode(branch: 'main', git url: 'https://github.com/etichiranjeevi/jenkins-shared-lib-prac.git')
             }
         }
 
