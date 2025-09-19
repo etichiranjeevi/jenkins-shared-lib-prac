@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/your-org/your-app.git', branch: 'main'
+                git url: 'https://github.com/etichiranjeevi/jenkins-shared-lib-prac.git', branch: 'main'
             }
         }
         stage('Build') {
