@@ -4,8 +4,15 @@ pipeline {
     environment {
         DEPLOY_ENV = "staging"
     }
+  
 
     stages {
+
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()  // wipes all files in workspace
+            }
+        }
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/etichiranjeevi/jenkins-shared-lib-prac.git', branch: 'main'
