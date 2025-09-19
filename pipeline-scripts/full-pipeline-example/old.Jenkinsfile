@@ -18,6 +18,12 @@ pipeline {
                 git url: 'https://github.com/etichiranjeevi/jenkins-shared-lib-prac.git', branch: 'main'
             }
         }
+        stage('Fix Script Permissions') {
+         steps {
+                sh 'chmod +x *.sh'
+               sh 'ls -l *.sh'
+            }
+      }
         stage('Build') {
             steps {
                 sh './build.sh'
